@@ -5,8 +5,13 @@ Esto es solo la fórmula para instalarlo con Homebrew.
 
 ```bash
 brew tap jadrdev/pauta
+brew trust jadrdev/pauta
 brew install --cask --no-quarantine pauta
 ```
+
+El `brew trust` es de Homebrew 7 en adelante: un tap que no es el oficial no se
+carga hasta que dices que te fías de él. Tiene sentido — un cask es código que
+se ejecuta en tu Mac.
 
 Y para actualizar, cuando la app avise de que hay versión nueva:
 

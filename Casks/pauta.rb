@@ -29,7 +29,12 @@ cask "pauta" do
 
   caveats <<~EOS
     Pauta va firmada con un certificado de desarrollo y sin notarizar, así que
-    Gatekeeper la bloquea si Homebrew le pone la cuarentena. Instálala así:
+    Gatekeeper la bloquea si Homebrew le pone la cuarentena. Si te la ha puesto,
+    se le quita con:
+
+      xattr -dr com.apple.quarantine /Applications/Pauta.app
+
+    o se evita instalando con:
 
       brew install --cask --no-quarantine pauta
 
