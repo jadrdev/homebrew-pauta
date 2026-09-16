@@ -28,17 +28,17 @@ cask "pauta" do
   ]
 
   caveats <<~EOS
-    Pauta va firmada con un certificado de desarrollo y sin notarizar, así que
-    Gatekeeper la bloquea si Homebrew le pone la cuarentena. Si te la ha puesto,
-    se le quita con:
+    Falta un paso antes de abrirla:
 
       xattr -dr com.apple.quarantine /Applications/Pauta.app
 
-    o se evita instalando con:
+    Pauta va firmada con un certificado de desarrollo y sin notarizar, y
+    Homebrew le pone la cuarentena a todo lo que baja; con las dos cosas
+    Gatekeeper dice que la app «está dañada», que no es verdad. Esa orden le
+    quita la cuarentena.
 
-      brew install --cask --no-quarantine pauta
-
-    No se quita con trabajo: notarizar exige un certificado Developer ID, y ese
-    lo da el programa de pago de Apple.
+    Hay que repetirlo en cada `brew upgrade`, porque cada versión se baja
+    otra vez. No se quita con trabajo: notarizar exige un certificado
+    Developer ID, y ese lo da el programa de pago de Apple.
   EOS
 end
