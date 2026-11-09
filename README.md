@@ -7,7 +7,6 @@ Esto es solo la fórmula para instalarlo con Homebrew.
 brew tap jadrdev/pauta
 brew trust jadrdev/pauta
 brew install --cask pauta
-xattr -dr com.apple.quarantine /Applications/Pauta.app
 ```
 
 El `brew trust` es de Homebrew 7 en adelante: un tap que no es el oficial no se
@@ -18,27 +17,21 @@ Y para actualizar, cuando la app avise de que hay versión nueva:
 
 ```bash
 brew upgrade --cask pauta
-xattr -dr com.apple.quarantine /Applications/Pauta.app
 ```
 
-## Por qué hay que quitarle la cuarentena
+## Ya no hay que quitarle la cuarentena
 
-Pauta va firmada con un certificado de desarrollo y **sin notarizar**. Homebrew
-le pone la cuarentena a todo lo que baja, y con las dos cosas Gatekeeper dice que
-la app está dañada — y no lo está.
+Desde la 0.4.16, Pauta va **firmada con un certificado Developer ID y
+notarizada por Apple**, con el ticket grapado en el disco y en la app. Gatekeeper
+la abre a la primera, también sin red.
 
-Hubo una bandera `--no-quarantine` para saltárselo; **Homebrew 7 la quitó**, así
-que ahora se instala y se le quita después. Y hay que repetirlo en cada
-`brew upgrade`, porque cada versión se baja otra vez.
-
-No es pereza: notarizar exige un certificado *Developer ID*, y ese lo da el
-programa de pago de Apple. El día que lo haya, este apartado entero sobra y el
-cask sigue valiendo igual.
+Hasta la 0.4.15 iba firmada con un certificado de desarrollo y sin notarizar, y
+había que hacer `xattr -dr com.apple.quarantine /Applications/Pauta.app` después
+de cada instalación. Si lo ves en algún sitio, es de antes.
 
 ## Qué aporta sobre bajar el disco
 
 Que la actualización se instala. La app **avisa** de que hay versión nueva pero
-no la instala, porque instalar sola algo descargado obliga a verificar la firma
-de lo que se baja y con esta cuenta no hay con qué. Homebrew sí verifica: el
-cask lleva el `sha256` y lo comprueba antes de tocar nada. Así que `brew upgrade`
-es el instalador que la app no puede tener.
+no se instala sola. Homebrew sí: el cask lleva el `sha256` del disco y lo
+comprueba antes de tocar nada, así que `brew upgrade` es el instalador que la
+app todavía no tiene.

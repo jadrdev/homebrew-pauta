@@ -1,6 +1,6 @@
 cask "pauta" do
-  version "0.4.15"
-  sha256 "c5b9f398418f8ccec9da8873bb0fea107b71f731b78682a9751b2c1c70dcb5e5"
+  version "0.4.16"
+  sha256 "8ef27743be7cad4e89e0ba45514ecc1886b68bc445521e0d176610dd18fbad2d"
 
   url "https://github.com/jadrdev/pauta/releases/download/v#{version}/Pauta-#{version}.dmg"
   name "Pauta"
@@ -26,19 +26,4 @@ cask "pauta" do
     "~/Library/Group Containers/26W4G92PSS.dev.jadrdev.pauta",
     "~/Library/Preferences/dev.jadrdev.pauta.plist",
   ]
-
-  caveats <<~EOS
-    Falta un paso antes de abrirla:
-
-      xattr -dr com.apple.quarantine /Applications/Pauta.app
-
-    Pauta va firmada con un certificado de desarrollo y sin notarizar, y
-    Homebrew le pone la cuarentena a todo lo que baja; con las dos cosas
-    Gatekeeper dice que la app «está dañada», que no es verdad. Esa orden le
-    quita la cuarentena.
-
-    Hay que repetirlo en cada `brew upgrade`, porque cada versión se baja
-    otra vez. No se quita con trabajo: notarizar exige un certificado
-    Developer ID, y ese lo da el programa de pago de Apple.
-  EOS
 end
