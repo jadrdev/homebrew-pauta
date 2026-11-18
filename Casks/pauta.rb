@@ -1,6 +1,6 @@
 cask "pauta" do
-  version "1.0.1"
-  sha256 "dd7e528f1724d554c6fa98f1a9795a29aedc50ff358a4ee498a1d3e7d1e2cc11"
+  version "1.0.2"
+  sha256 "453e97d6d9db4dc4392dff7d9fe2db1b98eefdeb21c024593473cdee2d5e64d2"
 
   url "https://github.com/jadrdev/pauta/releases/download/v#{version}/Pauta-#{version}.dmg"
   name "Pauta"
